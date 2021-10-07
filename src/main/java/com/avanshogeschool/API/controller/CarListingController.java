@@ -1,2 +1,7 @@
-package com.avanshogeschool.API.controllers;public class CarListingController {
+package com.avanshogeschool.API.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class CarListingController {
 }
