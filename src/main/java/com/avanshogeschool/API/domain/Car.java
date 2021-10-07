@@ -1,4 +1,4 @@
-package domain;
+package com.avanshogeschool.API.domain;
 
 import java.io.Serializable;
 
