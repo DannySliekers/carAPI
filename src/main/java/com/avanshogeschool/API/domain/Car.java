@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 public class Car implements Serializable {
 
-    public static String id;
-    public static String model;
-    public static String constructionYear;
-    public static String transmission;
-    public static String fuel;
-    public static String pricePer; /** price per: kilometer, liter fuel, day, hour, etc.**/
-    public static int price;
+    public String id;
+    public String model;
+    public String constructionYear;
+    public String transmission;
+    public String fuel;
+    public String pricePer; /** price per: kilometer, liter fuel, day, hour, etc.**/
+    public int price;
 
     public  boolean petsAllowed;
     public boolean smokingAllowed;
