@@ -1,16 +1,16 @@
 package com.avanshogeschool.API.domain;
 
-public class Feedback {
+public class FeedbackDriver {
 
     public String textField;
     public int rating;
     public String userName;
 
-    public Feedback(){
+    public FeedbackDriver(){
 
     }
 
-    public Feedback(String textField, int rating, String userName){
+    public FeedbackDriver(String textField, int rating, String userName){
         super();
         this.textField = textField;
         this.rating = rating;
