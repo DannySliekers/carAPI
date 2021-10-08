@@ -1,55 +1,24 @@
 package com.avanshogeschool.API.domain;
 
-import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-public class Car implements Serializable {
+@Entity
+public class Car {
+    @Id
+    @GeneratedValue
+    private int id;
 
-    public static String id;
-    public static String model;
-    public static String constructionYear;
-    public static String transmission;
-    public static String fuel;
-    public static String pricePer; /** price per: kilometer, liter fuel, day, hour, etc.**/
-    public static int price;
+    private String model;
+    private CarType carType;
 
-    public  boolean petsAllowed;
-    public boolean smokingAllowed;
-    public boolean isofixPresent;
-
-    public boolean isPetsAllowed() {
-        return petsAllowed;
-    }
-
-    public boolean isSmokingAllowed() {
-        return smokingAllowed;
-    }
-
-    public boolean isIsofixPresent() {
-        return isofixPresent;
-    }
-
-    public Car(){
-
-    }
-
-    public Car(String model, String constructionYear, String transmission, String fuel, String pricePer, int price) {
+    public Car(String model, CarType carType) {
         this.model = model;
-        this.constructionYear = constructionYear;
-        this.transmission = transmission;
-        this.fuel = fuel;
-        this.pricePer = pricePer;
-        this.price = price;
-
-        this.petsAllowed = isPetsAllowed();
-        this.smokingAllowed = isSmokingAllowed();
-        this.isofixPresent = isIsofixPresent();
+        this.carType = carType;
     }
-    public String getId(){
-        return id;
-    }
+    public Car() {
 
-    public void setId(String id){
-        this.id = id;
     }
 
     public String getModel() {
@@ -60,50 +29,20 @@ public class Car implements Serializable {
         this.model = model;
     }
 
-    public String getConstructionYear() {
-        return constructionYear;
+    public CarType getCarType() {
+        return carType;
     }
 
-    public void setConstructionYear(String constructionYear) {
-        this.constructionYear = constructionYear;
-    }
-
-    public String getTransmission() {
-        return transmission;
-    }
-
-    public void setTransmission(String transmission) {
-        this.transmission = transmission;
-    }
-
-    public String getFuel() {
-        return fuel;
-    }
-
-    public void setFuel(String fuel) {
-        this.fuel = fuel;
-    }
-
-    public String getPricePer() {
-        return pricePer;
-    }
-
-    public void setPricePer(String pricePer) {
-        this.pricePer = pricePer;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
+    public void setCarType(CarType carType) {
+        this.carType = carType;
     }
 
     @Override
-    public String toString(){
-        return "Car [id=" + id + ", model=" + model + ", construction year=" + constructionYear + ", transmission=" + transmission + ", fuel=" + fuel
-                +  " cost " + price + "per " + pricePer + "]";
+    public String toString() {
+        return "Car{" +
+                "model='" + model + '\'' +
+                ", carType=" + carType +
+                '}';
     }
 }
 
