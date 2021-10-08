@@ -1,9 +1,6 @@
 package com.avanshogeschool.API.repository;
 
-import com.avanshogeschool.API.domain.Car;
-import com.avanshogeschool.API.domain.CarListing;
-import com.avanshogeschool.API.domain.CarSize;
-import com.avanshogeschool.API.domain.CarType;
+import com.avanshogeschool.API.domain.*;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,8 +9,12 @@ public class DbInit {
             CarListingRepository carListingRepository,
             CarRepository carRepository
     ) {
-        Car car = new Car("Mercedes", CarType.ELECTRIC, "automaat", CarSize.BIG);
+        Car car = new Car("Mercedes", CarType.ELECTRIC, CarTransmission.AUTOMATIC, CarSize.BIG);
+        Car car1 = new Car("Lambo", CarType.GASOLINE, CarTransmission.AUTOMATIC, CarSize.MEDIUM);
+        Car car2 = new Car("Volkswagen", CarType.GASOLINE, CarTransmission.MANUAL, CarSize.BIG);
         carRepository.save(car);
+        carRepository.save(car1);
+        carRepository.save(car2);
         CarListing carListing = new CarListing(car, 4000, true, "test", 800, 0.15);
         carListingRepository.save(carListing);
     }

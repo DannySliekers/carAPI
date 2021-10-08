@@ -12,10 +12,10 @@ public class Car {
 
     private String model;
     private CarType carType;
-    private String transmission;
+    private CarTransmission transmission;
     private CarSize carSize;
 
-    public Car(String model, CarType carType, String transmission, CarSize carSize) {
+    public Car(String model, CarType carType, CarTransmission transmission, CarSize carSize) {
         this.model = model;
         this.carType = carType;
         this.transmission = transmission;
@@ -34,11 +34,11 @@ public class Car {
         this.carSize = carSize;
     }
 
-    public String getTransmission() {
+    public CarTransmission getTransmission() {
         return transmission;
     }
 
-    public void setTransmission(String transmission) {
+    public void setTransmission(CarTransmission transmission) {
         this.transmission = transmission;
     }
 
