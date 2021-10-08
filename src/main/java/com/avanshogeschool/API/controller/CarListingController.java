@@ -2,6 +2,7 @@ package com.avanshogeschool.API.controller;
 
 import com.avanshogeschool.API.repository.CarListingRepository;
 import com.avanshogeschool.API.domain.CarListing;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,9 +21,9 @@ public class CarListingController {
     }
 
     @PostMapping
-    public CarListing createCarListing(
+    public ResponseEntity<CarListing> createCarListing(
             @RequestBody CarListing carListing) {
-        carListingRepository.save(carListing);
-        return carListing;
+        System.out.println(carListing.getCar().toString());
+        return carListingRepository.save(carListing);
     }
 }
