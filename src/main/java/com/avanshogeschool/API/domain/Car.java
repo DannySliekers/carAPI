@@ -12,13 +12,34 @@ public class Car {
 
     private String model;
     private CarType carType;
+    private String transmission;
+    private CarSize carSize;
 
-    public Car(String model, CarType carType) {
+    public Car(String model, CarType carType, String transmission, CarSize carSize) {
         this.model = model;
         this.carType = carType;
+        this.transmission = transmission;
+        this.carSize = carSize;
     }
+
     public Car() {
 
+    }
+
+    public CarSize getCarSize() {
+        return carSize;
+    }
+
+    public void setCarSize(CarSize carSize) {
+        this.carSize = carSize;
+    }
+
+    public String getTransmission() {
+        return transmission;
+    }
+
+    public void setTransmission(String transmission) {
+        this.transmission = transmission;
     }
 
     public String getModel() {
@@ -39,8 +60,8 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "model='" + model + '\'' +
+        return "Car{" + "id='" + id + '\'' +
+                " model='" + model + '\'' +
                 ", carType=" + carType +
                 '}';
     }
