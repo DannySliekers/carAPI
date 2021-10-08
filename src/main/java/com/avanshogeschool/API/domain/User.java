@@ -1,57 +1,60 @@
 package com.avanshogeschool.API.domain;
 
-public class User {
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-    public String id;
-    public String firstName;
-    public String lastName;
-    public String userName;
-    public String password;
-    public String role;
-    public String email;
-    public String status;
+import javax.persistence.*;
 
-    public User(String firstname, String lastname, String username, String password, String role, String email, String status) {
-        super();
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userName = userName;
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "role", discriminatorType = DiscriminatorType.STRING)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "role")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Employee.class, name = "EMPLOYEE"),
+        @JsonSubTypes.Type(value = Customer.class, name = "CUSTOMER")
+})
+public abstract class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String name;
+    private String username;
+    private String password;
+
+    public User(String name, String username, String password) {
+        this.name = name;
+        this.username = username;
         this.password = password;
-        this.role = role;
-        this.email = email;
-        this.status = status;
     }
 
-    public String getId() {
+    public User() {
+
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -60,33 +63,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    //    no setEmail
-
-    // no getRole
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }
