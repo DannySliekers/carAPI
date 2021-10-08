@@ -1,16 +1,16 @@
 package com.avanshogeschool.API.domain;
 
-public class BookCar {
+public class BookYourCar {
 
     private Long reservationId;
-     private String carId;
+    private String carId;
 
 
-    public BookCar(){
+    public BookYourCar(){
 
     }
 
-    public BookCar(Long reservationId, String carId){
+    public BookYourCar(Long reservationId, String carId){
         this.reservationId = reservationId;
         this.carId = carId;
     }
