@@ -2,9 +2,7 @@ package com.avanshogeschool.API.controller;
 
 import com.avanshogeschool.API.repository.CarListingRepository;
 import com.avanshogeschool.API.domain.CarListing;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/carlisting")
@@ -17,7 +15,14 @@ public class CarListingController {
     }
 
     @GetMapping
-    public Iterable<CarListing> getCarListing() {
+    public Iterable<CarListing> getAll() {
         return carListingRepository.findAll();
+    }
+
+    @PostMapping
+    public CarListing createCarListing(
+            @RequestBody CarListing carListing) {
+        carListingRepository.save(carListing);
+        return carListing;
     }
 }
