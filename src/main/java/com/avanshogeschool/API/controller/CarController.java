@@ -2,6 +2,7 @@ package com.avanshogeschool.API.controller;
 
 import com.avanshogeschool.API.domain.Car;
 import com.avanshogeschool.API.domain.CarListing;
+import com.avanshogeschool.API.repository.CarListingRepository;
 import com.avanshogeschool.API.repository.CarRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,5 +42,14 @@ public class CarController {
             System.out.println("Error during creation of" + newCar + e);
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteCar(@PathVariable int id) {
+        if(!carRepository.existsById(id)){
+            return ResponseEntity.notFound().build();
+        }
+        carRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

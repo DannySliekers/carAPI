@@ -7,6 +7,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Car {
+
     @Id
     @GeneratedValue
     private int id;
@@ -28,6 +29,10 @@ public class Car {
 
     public Car() {
 
+    }
+
+    public int getId() {
+        return id;
     }
 
     public CarSize getCarSize() {
