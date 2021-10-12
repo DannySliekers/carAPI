@@ -31,6 +31,14 @@ public class CarListing {
         this.pricePerExtraKm = pricePerExtraKm;
     }
 
+    public CarListing(double price, boolean available, String image, int freeKm, double pricePerExtraKm) {
+        this.price = price;
+        this.available = available;
+        this.image = image;
+        this.freeKm = freeKm;
+        this.pricePerExtraKm = pricePerExtraKm;
+    }
+
     public CarListing() {
 
     }

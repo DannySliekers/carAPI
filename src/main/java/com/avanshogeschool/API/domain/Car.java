@@ -3,12 +3,16 @@ package com.avanshogeschool.API.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Car {
     @Id
     @GeneratedValue
     private int id;
+
+    @OneToOne
+    private CarListing carListing;
 
     private String model;
     private CarType carType;
