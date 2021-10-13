@@ -42,4 +42,13 @@ public class CarListingController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteCarListing(@PathVariable Long id) {
+        if(!carListingRepository.existsById(id)){
+            return ResponseEntity.notFound().build();
+        }
+        carListingRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

@@ -15,9 +15,11 @@ import java.util.Optional;
 public class CarController {
 
     private final CarRepository carRepository;
+    private final CarListingRepository carListingRepository;
 
-    public CarController(CarRepository carRepository) {
+    public CarController(CarRepository carRepository, CarListingRepository carListingRepository) {
         this.carRepository = carRepository;
+        this.carListingRepository = carListingRepository;
     }
     @GetMapping
     public Iterable<Car> getAll() {
