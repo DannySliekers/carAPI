@@ -34,7 +34,11 @@ public class CarListingController {
             @RequestBody CarListing newCarListing) {
         try {
             Optional<Car> car = carRepository.findById(carId);
-            newCarListing.setCar(car.get());
+            if (car.isPresent()) {
+                newCarListing.setCar(car.get());
+            } else {
+                return ResponseEntity.notFound().build();
+            }
             CarListing carListing = carListingRepository.save(newCarListing);
             return new ResponseEntity<>(carListing, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
@@ -50,5 +54,30 @@ public class CarListingController {
         }
         carListingRepository.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CarListing> updateCarListing(@PathVariable Long id,
+                                                       @RequestParam int carId,
+                                                       @RequestBody CarListing newCarListing) {
+        Optional<CarListing> carListing = carListingRepository.findById(id);
+
+        if (carListing.isPresent()) {
+            CarListing oldCarListing = carListing.get();
+            Optional<Car> car = carRepository.findById(carId);
+            if (car.isPresent()) {
+                oldCarListing.setCar(car.get());
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+            oldCarListing.setPrice(newCarListing.getPrice());
+            oldCarListing.setAvailable(newCarListing.isAvailable());
+            oldCarListing.setImage(newCarListing.getImage());
+            oldCarListing.setFreeKm(newCarListing.getFreeKm());
+            oldCarListing.setPricePerExtraKm(newCarListing.getPricePerExtraKm());
+            return ResponseEntity.ok(carListingRepository.save(oldCarListing));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
