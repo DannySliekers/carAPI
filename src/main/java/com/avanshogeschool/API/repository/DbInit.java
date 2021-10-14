@@ -7,7 +7,8 @@ import org.springframework.stereotype.Component;
 public class DbInit {
     public DbInit(
             CarListingRepository carListingRepository,
-            CarRepository carRepository
+            CarRepository carRepository,
+            UserRepository userRepository
     ) {
         Car car = new Car("Mercedes", CarType.ELECTRIC, CarTransmission.AUTOMATIC, CarSize.BIG);
         Car car1 = new Car("Lambo", CarType.PETROL, CarTransmission.AUTOMATIC, CarSize.MEDIUM);
@@ -17,5 +18,7 @@ public class DbInit {
         carRepository.save(car2);
         CarListing carListing = new CarListing(car, 4000, true, "test", 800, 0.15);
         carListingRepository.save(carListing);
+        Customer customer = new Customer("Danny", "Danny123", "asxcviueshewiur3rhuiwhruw3hiur");
+        userRepository.save(customer);
     }
 }

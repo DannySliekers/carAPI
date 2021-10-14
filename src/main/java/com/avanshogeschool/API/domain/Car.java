@@ -12,9 +12,6 @@ public class Car {
     @GeneratedValue
     private int id;
 
-    @OneToOne
-    private CarListing carListing;
-
     private String model;
     private CarType carType;
     private CarTransmission transmission;

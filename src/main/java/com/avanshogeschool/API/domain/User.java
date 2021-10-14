@@ -21,12 +21,12 @@ public abstract class User {
 
     private String name;
     private String username;
-    private String password;
+    private String hash;
 
-    public User(String name, String username, String password) {
+    public User(String name, String username, String hash) {
         this.name = name;
         this.username = username;
-        this.password = password;
+        this.hash = hash;
     }
 
     public User() {
@@ -57,11 +57,11 @@ public abstract class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getHash() {
+        return hash;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setHash(String hash) {
+        this.hash = hash;
     }
 }
