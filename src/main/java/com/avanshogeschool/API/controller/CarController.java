@@ -44,6 +44,7 @@ public class CarController {
         }
     }
 
+    //bug: can't delete car if its tied to a carlisting
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteCar(@PathVariable int id) {
         if(!carRepository.existsById(id)){
@@ -52,4 +53,22 @@ public class CarController {
         carRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Car> updateCar(@PathVariable int id,
+                                         @RequestBody Car newCar) {
+        Optional<Car> optionalCar = carRepository.findById(id);
+
+        if (optionalCar.isPresent()) {
+            Car oldCar = optionalCar.get();
+            oldCar.setModel(newCar.getModel());
+            oldCar.setCarType(newCar.getCarType());
+            oldCar.setTransmission(newCar.getTransmission());
+            oldCar.setCarSize(newCar.getCarSize());
+            return ResponseEntity.ok(carRepository.save(oldCar));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
