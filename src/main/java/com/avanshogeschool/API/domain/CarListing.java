@@ -9,6 +9,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class CarListing {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -41,6 +42,10 @@ public class CarListing {
 
     public CarListing() {
 
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Car getCar() {
