@@ -10,8 +10,8 @@ public class DbInit {
             CarRepository carRepository
     ) {
         Car car = new Car("Mercedes", CarType.ELECTRIC, CarTransmission.AUTOMATIC, CarSize.BIG);
-        Car car1 = new Car("Lambo", CarType.GASOLINE, CarTransmission.AUTOMATIC, CarSize.MEDIUM);
-        Car car2 = new Car("Volkswagen", CarType.GASOLINE, CarTransmission.MANUAL, CarSize.BIG);
+        Car car1 = new Car("Lambo", CarType.PETROL, CarTransmission.AUTOMATIC, CarSize.MEDIUM);
+        Car car2 = new Car("Volkswagen", CarType.DIESEL, CarTransmission.MANUAL, CarSize.BIG);
         carRepository.save(car);
         carRepository.save(car1);
         carRepository.save(car2);

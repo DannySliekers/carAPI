@@ -2,6 +2,8 @@ package com.avanshogeschool.API.domain;
 
 public enum CarType {
     ELECTRIC,
-    GASOLINE,
-    HYDROGEN
+    HYDROGEN,
+    DIESEL,
+    PETROL,
+    GAS
 }
