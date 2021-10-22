@@ -14,11 +14,18 @@ public class Reservation {
     @ManyToOne
     private CarListing carListing;
 
-    private int userId;
+    private Long userId;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
-    public Reservation(CarListing carListing, int userId, LocalDateTime startTime, LocalDateTime endTime) {
+    public Reservation(CarListing carListing, Long userId, LocalDateTime startTime, LocalDateTime endTime) {
+        this.carListing = carListing;
+        this.userId = userId;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    public Reservation(Long userId, LocalDateTime startTime, LocalDateTime endTime) {
         this.carListing = carListing;
         this.userId = userId;
         this.startTime = startTime;
@@ -37,11 +44,11 @@ public class Reservation {
         this.carListing = carListing;
     }
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
