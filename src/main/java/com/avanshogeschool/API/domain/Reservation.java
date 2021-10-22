@@ -9,7 +9,7 @@ public class Reservation {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 
     @ManyToOne
     private CarListing carListing;
@@ -34,6 +34,10 @@ public class Reservation {
 
     public Reservation() {
 
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public CarListing getCarListing() {

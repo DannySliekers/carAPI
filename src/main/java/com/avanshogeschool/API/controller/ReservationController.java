@@ -56,4 +56,13 @@ public class ReservationController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteReservation(@PathVariable Long id) {
+        if(!reservationRepository.existsById(id)){
+            return ResponseEntity.notFound().build();
+        }
+        reservationRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
