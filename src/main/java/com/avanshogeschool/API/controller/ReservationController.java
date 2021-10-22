@@ -65,4 +65,27 @@ public class ReservationController {
         reservationRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Reservation> updateCarListing(@PathVariable Long id,
+                                                       @RequestParam Long carListingId,
+                                                       @RequestBody Reservation newReservation) {
+        Optional<Reservation> reservation = reservationRepository.findById(id);
+
+        if (reservation.isPresent()) {
+            Reservation oldReservation = reservation.get();
+            Optional<CarListing> carListing = carListingRepository.findById(carListingId);
+            if (carListing.isPresent()) {
+                oldReservation.setCarListing(carListing.get());
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+            oldReservation.setUserId(newReservation.getUserId());
+            oldReservation.setStartTime(newReservation.getStartTime());
+            oldReservation.setEndTime(newReservation.getEndTime());
+            return ResponseEntity.ok(reservationRepository.save(oldReservation));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
