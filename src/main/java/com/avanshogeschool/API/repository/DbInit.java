@@ -11,7 +11,8 @@ public class DbInit {
     public DbInit(
             CarListingRepository carListingRepository,
             CarRepository carRepository,
-            ReservationRepository reservationRepository
+            ReservationRepository reservationRepository,
+            UserRepository userRepository
     ) {
         Car car = new Car("Mercedes", CarType.ELECTRIC, CarTransmission.AUTOMATIC, CarSize.BIG);
         Car car1 = new Car("Lambo", CarType.PETROL, CarTransmission.AUTOMATIC, CarSize.MEDIUM);
@@ -19,9 +20,13 @@ public class DbInit {
         carRepository.save(car);
         carRepository.save(car1);
         carRepository.save(car2);
+
         CarListing carListing = new CarListing(car, 4000, true, "test", 800, 0.15);
         carListingRepository.save(carListing);
+
         Customer customer = new Customer("Danny", "danny123", "abctest123");
+        userRepository.save(customer);
+
         Reservation reservation = new Reservation(carListing, 1, LocalDateTime.now(), LocalDateTime.now());
         reservationRepository.save(reservation);
     }
