@@ -3,11 +3,15 @@ package com.avanshogeschool.API.repository;
 import com.avanshogeschool.API.domain.*;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @Component
 public class DbInit {
     public DbInit(
             CarListingRepository carListingRepository,
             CarRepository carRepository,
+            ReservationRepository reservationRepository
             UserRepository userRepository
     ) {
         Car car = new Car("Mercedes", CarType.ELECTRIC, CarTransmission.AUTOMATIC, CarSize.BIG);
@@ -18,7 +22,9 @@ public class DbInit {
         carRepository.save(car2);
         CarListing carListing = new CarListing(car, 4000, true, "test", 800, 0.15);
         carListingRepository.save(carListing);
-        Customer customer = new Customer("Danny", "Danny123", "asxcviueshewiur3rhuiwhruw3hiur");
-        userRepository.save(customer);
+        Customer customer = new Customer("Danny", "danny123", "abctest123");
+        userRepostiory.save(customer);
+        Reservation reservation = new Reservation(carListing, 1L, LocalDateTime.now(), LocalDateTime.now());
+        reservationRepository.save(reservation);
     }
 }

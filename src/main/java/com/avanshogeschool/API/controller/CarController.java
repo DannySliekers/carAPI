@@ -47,7 +47,6 @@ public class CarController {
         }
     }
 
-    //bug: can't delete car if its tied to a carlisting
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteCar(@PathVariable int id,
                                                 @RequestParam Long carListingId) {
