@@ -15,9 +15,11 @@ import java.util.Optional;
 public class CarController {
 
     private final CarRepository carRepository;
+    private final CarListingRepository carListingRepository;
 
-    public CarController(CarRepository carRepository) {
+    public CarController(CarRepository carRepository, CarListingRepository carListingRepository) {
         this.carRepository = carRepository;
+        this.carListingRepository = carListingRepository;
     }
 
     @GetMapping
@@ -46,10 +48,12 @@ public class CarController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deleteCar(@PathVariable int id) {
-        if(!carRepository.existsById(id)){
+    public ResponseEntity<HttpStatus> deleteCar(@PathVariable int id,
+                                                @RequestParam Long carListingId) {
+        if (!carRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
+        carListingRepository.deleteById(carListingId);
         carRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
