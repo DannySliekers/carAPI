@@ -3,11 +3,9 @@ package com.avanshogeschool.API.controller;
 import com.avanshogeschool.API.domain.Car;
 import com.avanshogeschool.API.domain.User;
 import com.avanshogeschool.API.repository.UserRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -30,5 +28,17 @@ public class UserController {
         return userRepository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity<User> createUser(
+            @RequestBody User newUser) {
+        try {
+            User user = userRepository.save(newUser);
+            return new ResponseEntity<>(user, HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error during creation of" + newUser + e);
+            return ResponseEntity.badRequest().build();
+        }
     }
 }
