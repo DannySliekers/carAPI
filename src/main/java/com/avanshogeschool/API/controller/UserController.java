@@ -1,8 +1,8 @@
 package com.avanshogeschool.API.controller;
 
-import com.avanshogeschool.API.domain.Car;
 import com.avanshogeschool.API.domain.User;
 import com.avanshogeschool.API.repository.UserRepository;
+import com.avanshogeschool.API.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,10 +12,15 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    private final UserRepository userRepository;
 
-    public UserController(UserRepository userRepository) {
+    private final UserRepository userRepository;
+    private final UserService userService;
+
+    public UserController(UserRepository userRepository,
+                          UserService userService
+    ) {
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @GetMapping Iterable<User> getAll() {
@@ -25,6 +30,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User newUser) {
         try {
+            newUser.setHash(userService.hashPassword(newUser.getHash()));
             User user = userRepository.save(newUser);
             return new ResponseEntity<>(user, HttpStatus.CREATED);
         } catch(IllegalArgumentException e) {
@@ -44,7 +50,8 @@ public class UserController {
 
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id,
-                                         @RequestBody User newUser) {
+                                         @RequestBody User newUser
+    ) {
         Optional<User> optionalUser = userRepository.findById(id);
 
         if (optionalUser.isPresent()) {
