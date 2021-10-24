@@ -15,7 +15,6 @@ public class UserService {
     public String hashPassword(String password) {
         BCryptPasswordEncoder bCryptPasswordEncoder =
                 new BCryptPasswordEncoder(10, new SecureRandom());
-        String encodedPassword = bCryptPasswordEncoder.encode(password);
-        return encodedPassword;
+        return bCryptPasswordEncoder.encode(password);
     }
 }
