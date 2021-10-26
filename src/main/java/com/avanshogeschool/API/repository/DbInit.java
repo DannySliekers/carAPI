@@ -15,7 +15,7 @@ public class DbInit {
             UserRepository userRepository
     ) {
         Car car = new Car("Mercedes", CarType.ELECTRIC, CarTransmission.AUTOMATIC, CarSize.BIG);
-        Car car1 = new Car("Lambo", CarType.PETROL, CarTransmission.AUTOMATIC, CarSize.MEDIUM);
+        Car car1 = new Car("Lambo", CarType.GAS, CarTransmission.AUTOMATIC, CarSize.MEDIUM);
         Car car2 = new Car("Volkswagen", CarType.DIESEL, CarTransmission.MANUAL, CarSize.BIG);
         carRepository.save(car);
         carRepository.save(car1);
