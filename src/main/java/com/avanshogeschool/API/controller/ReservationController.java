@@ -38,6 +38,7 @@ public class ReservationController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // We request the parameter carListingId, to search the corresponding carlisting and insert it into the Reservation
     @PostMapping
     public ResponseEntity<Reservation> createReservation(
             @RequestParam Long carListingId,
@@ -66,6 +67,7 @@ public class ReservationController {
         return ResponseEntity.noContent().build();
     }
 
+    // carListingId is a request parameter for the same reason as the PostMapping
     @PutMapping("/{id}")
     public ResponseEntity<Reservation> updateCarListing(@PathVariable Long id,
                                                        @RequestParam Long carListingId,

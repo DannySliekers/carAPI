@@ -13,6 +13,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception
     {
+        //Needed Spring Security for hashing passwords, but we don't need our API requests
+        // to be secured so this disables the security
         http.authorizeRequests().antMatchers("/").permitAll();
         http.csrf().disable();
     }

@@ -17,7 +17,7 @@ public class CarListingTest {
 
     @Test
     void getCar_expectNotNull() {
-        Car car = new Car("Volkswagen", CarType.HYDROGEN, CarTransmission.AUTOMATIC, CarSize.BIG);
+        Car car = new Car("Volkswagen", CarType.HYDROGEN, CarTransmission.AUTOMATIC, CarSize.BIG, "Alkmaar");
         CarListing carListing = new CarListing(car, 5, true, "test", 5, 5);
 
         Car carListingCar = carListing.getCar();
