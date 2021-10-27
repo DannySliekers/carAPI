@@ -65,7 +65,7 @@ public class CarListingController {
         return ResponseEntity.noContent().build();
     }
 
-    // test comment
+
     // carId is a request parameter for the same reason as the PostMapping
     @PutMapping("/{id}")
     public ResponseEntity<CarListing> updateCarListing(@PathVariable Long id,
