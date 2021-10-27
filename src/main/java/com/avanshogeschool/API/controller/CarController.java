@@ -1,7 +1,6 @@
 package com.avanshogeschool.API.controller;
 
 import com.avanshogeschool.API.domain.Car;
-import com.avanshogeschool.API.domain.CarListing;
 import com.avanshogeschool.API.repository.CarListingRepository;
 import com.avanshogeschool.API.repository.CarRepository;
 import org.springframework.http.HttpStatus;
@@ -47,6 +46,7 @@ public class CarController {
         }
     }
 
+    //also delete the carlisting if the car is tied to it because a carlisting is nothing without a car.
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteCar(@PathVariable int id,
                                                 @RequestParam Long carListingId) {

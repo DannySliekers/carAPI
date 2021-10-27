@@ -1,7 +1,6 @@
 package com.avanshogeschool.API.controller;
 
 import com.avanshogeschool.API.domain.Car;
-import com.avanshogeschool.API.domain.Reservation;
 import com.avanshogeschool.API.repository.CarListingRepository;
 import com.avanshogeschool.API.domain.CarListing;
 import com.avanshogeschool.API.repository.CarRepository;
