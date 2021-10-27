@@ -1,7 +1,6 @@
 package com.avanshogeschool.API.service;
 
 import com.avanshogeschool.API.domain.User;
-import com.avanshogeschool.API.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
