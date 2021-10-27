@@ -1,5 +1,6 @@
 package com.avanshogeschool.API.controller;
 
+import com.avanshogeschool.API.domain.Reservation;
 import com.avanshogeschool.API.domain.User;
 import com.avanshogeschool.API.repository.UserRepository;
 import com.avanshogeschool.API.service.UserService;
@@ -25,6 +26,14 @@ public class UserController {
 
     @GetMapping Iterable<User> getAll() {
         return userRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getById(
+            @PathVariable Long id) {
+        return userRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
