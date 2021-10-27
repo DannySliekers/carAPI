@@ -16,12 +16,14 @@ public class Car {
     private CarType carType;
     private CarTransmission transmission;
     private CarSize carSize;
+    private String location;
 
-    public Car(String model, CarType carType, CarTransmission transmission, CarSize carSize) {
+    public Car(String model, CarType carType, CarTransmission transmission, CarSize carSize, String location) {
         this.model = model;
         this.carType = carType;
         this.transmission = transmission;
         this.carSize = carSize;
+        this.location = location;
     }
 
     public Car() {
@@ -62,6 +64,14 @@ public class Car {
 
     public void setCarType(CarType carType) {
         this.carType = carType;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     @Override

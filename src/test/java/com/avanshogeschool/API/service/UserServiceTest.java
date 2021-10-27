@@ -1,9 +1,11 @@
 package com.avanshogeschool.API.service;
 
+import com.avanshogeschool.API.repository.UserRepository;
 import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.mockito.Mockito.mock;
 
 public class UserServiceTest {
     @Test

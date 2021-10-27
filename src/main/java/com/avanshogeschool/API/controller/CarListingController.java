@@ -1,6 +1,7 @@
 package com.avanshogeschool.API.controller;
 
 import com.avanshogeschool.API.domain.Car;
+import com.avanshogeschool.API.domain.Reservation;
 import com.avanshogeschool.API.repository.CarListingRepository;
 import com.avanshogeschool.API.domain.CarListing;
 import com.avanshogeschool.API.repository.CarRepository;
@@ -28,6 +29,15 @@ public class CarListingController {
         return carListingRepository.findAll();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<CarListing> getById(
+            @PathVariable Long id) {
+        return carListingRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    // we request the parameter carId, and with that carId we search the corresponding car, and insert that into the carlisting
     @PostMapping
     public ResponseEntity<CarListing> createCarListing(
             @RequestParam int carId,
@@ -56,6 +66,7 @@ public class CarListingController {
         return ResponseEntity.noContent().build();
     }
 
+    // carId is a request parameter for the same reason as the PostMapping
     @PutMapping("/{id}")
     public ResponseEntity<CarListing> updateCarListing(@PathVariable Long id,
                                                        @RequestParam int carId,

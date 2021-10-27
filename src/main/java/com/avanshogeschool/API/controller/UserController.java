@@ -1,5 +1,6 @@
 package com.avanshogeschool.API.controller;
 
+import com.avanshogeschool.API.domain.Reservation;
 import com.avanshogeschool.API.domain.User;
 import com.avanshogeschool.API.repository.UserRepository;
 import com.avanshogeschool.API.service.UserService;
@@ -25,6 +26,23 @@ public class UserController {
 
     @GetMapping Iterable<User> getAll() {
         return userRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getById(
+            @PathVariable Long id) {
+        return userRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    //mapped to /username/{username} because otherwise it would collide with getById
+    @GetMapping("/username/{userName}")
+    public ResponseEntity<User> getByUserName(
+            @PathVariable String userName) {
+        return userRepository.findByUserName(userName)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
