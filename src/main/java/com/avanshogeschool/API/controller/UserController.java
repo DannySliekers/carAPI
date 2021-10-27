@@ -36,6 +36,15 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    //mapped to /username/{username} because otherwise it would collide with getById
+    @GetMapping("/username/{userName}")
+    public ResponseEntity<User> getByUserName(
+            @PathVariable String userName) {
+        return userRepository.findByUserName(userName)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User newUser) {
         try {
